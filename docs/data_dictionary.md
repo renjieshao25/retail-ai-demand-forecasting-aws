@@ -9,15 +9,13 @@ This dataset is used for retail demand forecasting at the SKU-store-week level.
 
 | Column Name | Description | Data Type | Example | Used For |
 |------------|------------|----------|--------|----------|
-| date | Transaction date | datetime | 2020-01-01 | Time series |
-| store_id | Unique store identifier | string | CA_1 | Grouping |
-| sku_id | Unique product identifier | string | FOODS_1_001 | Forecasting |
-| units_sold | Number of units sold | integer | 12 | Target variable |
-| price | Selling price per unit | float | 4.99 | Feature |
-| promo_flag | Whether item is on promotion | boolean | 1 | Feature |
-| inventory_on_hand | Units available in stock | integer | 100 | Feature |
-| category | Product category | string | FOODS | Feature |
-
+| id | Unique identifier for item-store combination | string | FOODS_1_001_CA_1_validation | Grouping |
+| item_id | Product identifier | string | FOODS_1_001 | Forecasting |
+| dept_id | Department identifier | string | FOODS_1 | Feature |
+| cat_id | Category identifier | string | FOODS | Feature |
+| store_id | Store identifier | string | CA_1 | Grouping |
+| state_id | State identifier | string | CA | Feature |
+| d_* | Daily unit sales (wide format; each column represents a day) | integer | d_1 = 3 | Target variable |
 ---
 
 ## Table: calendar
@@ -46,6 +44,6 @@ This dataset is used for retail demand forecasting at the SKU-store-week level.
 | Column Name | Description | Data Type | Example | Used For |
 |------------|------------|----------|--------|----------|
 | store_id | Store identifier | string | CA_1 | Join key |
-| sku_id | Product identifier | string | FOODS_1_001 | Join key |
-| week | Week identifier | string | 2020-W01 | Join key |
-| price | Product price | float | 4.99 | Feature |
+| item_id | Product identifier | string | FOODS_1_001 | Join key |
+| wm_yr_wk | Walmart retail week identifier (year + week) | integer | 11101 | Join with pricing data |
+| sell_price | Product price | float | 4.99 | Feature |
